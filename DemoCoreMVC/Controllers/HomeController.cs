@@ -1,3 +1,5 @@
+using DemoCoreMVC.DAL;
+using DemoCoreMVC.Files;
 using DemoCoreMVC.Interfaces;
 using DemoCoreMVC.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -12,14 +14,18 @@ namespace DemoCoreMVC.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IFile _ftpFile;
         private readonly IFile _ioFile;
+        private readonly AdventureWorksLT2022Context _db;
 
+        // «Øºc¦¡ª`¤J
         public HomeController(ILogger<HomeController> logger,
-                              [FromKeyedServices("ftp")] IFile ftpFile,
-                              [FromKeyedServices("io")] IFile ioFile)
+                               [FromKeyedServices(key: "ftp")] IFile ftpFile,
+                              [FromKeyedServices("io")] IFile ioFile,
+                              AdventureWorksLT2022Context db)
         {
             _logger = logger;
             _ftpFile = ftpFile;
             _ioFile = ioFile;
+            _db = db; // Scoped
         }
 
         public IActionResult Index()
@@ -33,6 +39,21 @@ namespace DemoCoreMVC.Controllers
 
         public IActionResult Privacy()
         {
+            var product = _db.Product.FirstOrDefault();
+
+            if (product != null)
+            {
+                ViewBag.ProductName = product.Name;
+            }
+            else
+            {
+                ViewBag.ProductName = "Not Found";
+            }
+
+            //ViewBag.ProductName = product != null ? product.Name : "Not Found";
+
+            //ViewBag.ProductName = product?.Name ?? "Not Found";
+
             return View();
         }
 

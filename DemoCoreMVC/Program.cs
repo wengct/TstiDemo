@@ -1,5 +1,7 @@
+using DemoCoreMVC.DAL;
 using DemoCoreMVC.Files;
 using DemoCoreMVC.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DemoCoreMVC
@@ -12,11 +14,12 @@ namespace DemoCoreMVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            
+            //¨ã¦WDI
             builder.Services.AddKeyedSingleton<IFile, FTPFile>("ftp");
             builder.Services.AddKeyedSingleton<IFile, IOFile>("io");
-
-
+            builder.Services.AddDbContext<AdventureWorksLT2022Context>(
+              options => options.UseSqlServer(builder.Configuration.GetSection("ConnectionStrings:DefaultConnection").Value));
 
             var app = builder.Build();
 

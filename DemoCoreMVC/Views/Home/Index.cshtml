@@ -1,9 +1,37 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    string s = "Demo string";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     <p>@ViewBag.FileContent</p>
+    <h1>@s @@</h1>
+
+    @if (ViewData["Message"] != null)
+    {
+        <h2>@ViewData["Message"]</h2>
+    }
+    <ul>
+        @for (int i = 0; i < 10; i++)
+        {
+            <li>@i</li>
+        }
+    </ul>
+    <ul>
+        @foreach (var item in new[] { "one", "two", "three" })
+        {
+            <div>
+                <label>
+
+                </label>
+                <input />
+            </div>
+        }
+    </ul>
+    <!-- HTML註解 (瀏覽器看得到)-->
+    <!--<input type="text />-->
+    @* Razor註解 (瀏覽器看不到)*@
+    @* <input type="text /> *@
 </div>
