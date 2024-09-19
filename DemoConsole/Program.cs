@@ -53,7 +53,8 @@ namespace DemoConsole
             //Update不先查詢(db);
             //Delete(db);
             //Delete不先查詢(db);
-            //ExecuteStoredProcedureForQueryData(db);
+            ExecuteScriptForQueryDataViaSqlQuery(db);
+            //ExecuteStoredProcedureForQueryDataViaSqlQueryRaw(db);
             //ExecuteStoredProcedureForInsertData(db);
         }
 
@@ -107,9 +108,43 @@ namespace DemoConsole
             Console.WriteLine($"影響行數 = {affectedRows2}");
         }
 
-        private static void ExecuteStoredProcedureForQueryData(AdventureWorksLT2022Context db)
+        private static void ExecuteScriptForQueryDataViaSqlQuery(AdventureWorksLT2022Context db)
         {
-            Console.WriteLine("ExecuteStoredProcedureForQueryData");
+            Console.WriteLine("ExecuteScriptForQueryDataViaSqlQuery");
+            string productName = "Mountain-500";
+            FormattableString formattableString =
+                @$"SELECT
+                    P.Name as [ProductName],
+                    PC.Name as [CategoryName]
+                    FROM SalesLT.Product P WITH(NOLOCK)
+                   INNER JOIN SalesLT.ProductCategory PC WITH(NOLOCK) ON P.ProductCategoryID = PC.ProductCategoryID
+                   WHERE P.Name LIKE '%' + {productName} + '%'";
+            List<ProductData> productDatas = db.Database.SqlQuery<ProductData>(formattableString).ToList();
+            foreach (var item in productDatas)
+            {
+                Console.WriteLine($"Category = {item.CategoryName}, Product = {item.ProductName}");
+            }
+
+        }
+
+        private static void ExecuteStoredProcedureForQueryDataViaSqlQuery(AdventureWorksLT2022Context db)
+        {
+            Console.WriteLine("ExecuteStoredProcedureForQueryDataViaSqlQuery");
+            // exec Usp_GetProductByProductName 'Mountain-500'
+            string productName = "Mountain-500";
+            FormattableString formattableString = $"EXEC [dbo].Usp_GetProductByProductName {productName}, {productName}";
+            List<ProductData> productDatas = db.Database.SqlQuery<ProductData>(formattableString).ToList();
+            //$"{spName} @ProductName", new SqlParameter("@ProductName", productName)            
+
+            foreach (var item in productDatas)
+            {
+                Console.WriteLine($"Category = {item.CategoryName}, Product = {item.ProductName}");
+            }
+
+        }
+        private static void ExecuteStoredProcedureForQueryDataViaSqlQueryRaw(AdventureWorksLT2022Context db)
+        {
+            Console.WriteLine("ExecuteStoredProcedureForQueryDataViaSqlQueryRaw");
             // exec Usp_GetProductByProductName 'Mountain-500'
             string spName = "[dbo].Usp_GetProductByProductName";
             string productName = "Mountain-500";
