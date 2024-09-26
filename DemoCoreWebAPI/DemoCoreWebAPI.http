@@ -1,6 +1,17 @@
 @DemoCoreWebAPI_HostAddress = http://localhost:5084
 
-GET {{DemoCoreWebAPI_HostAddress}}/weatherforecast/
+POST {{DemoCoreWebAPI_HostAddress}}/api/auth/token
+Accept: application/json
+###
+
+GET {{DemoCoreWebAPI_HostAddress}}/weatherforecast
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ5b3VyX3VzZXJfaWQiLCJqdGkiOiJiOGM5YjIzOS00MjZmLTRmZTMtYTIwZS1lZmUwNDFlNmIxODkiLCJleHAiOjE3MjczMjMxMjEsImlzcyI6InRzdGkiLCJhdWQiOiJldmVyeW9uZSJ9.DlsxU2ncNn2t6n7kn4Ippxeg1NBo-HT1HbA9XqluR8o
+Accept: application/json
+Body: ""
+
+###
+
+PUT {{DemoCoreWebAPI_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
