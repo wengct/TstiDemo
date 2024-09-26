@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoCoreMVC", "DemoCoreMVC\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoFrameworkMVC", "DemoFrameworkMVC\DemoFrameworkMVC.csproj", "{724476A0-8127-420E-8E26-DF9EB33CD253}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoCoreWebAPI", "DemoCoreWebAPI\DemoCoreWebAPI.csproj", "{9D3E613F-89CB-45CE-89A2-AE912E48D452}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoCoreWebAPI", "DemoCoreWebAPI\DemoCoreWebAPI.csproj", "{9D3E613F-89CB-45CE-89A2-AE912E48D452}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoFrameworkWebAPI", "DemoFrameworkWebAPI\DemoFrameworkWebAPI.csproj", "{7EE81088-4C65-463F-ADA5-A57C04DDC36B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWorkerService", "DemoWorkerService\DemoWorkerService.csproj", "{2BF8C639-B084-4169-BD08-2EB6FC253146}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{7EE81088-4C65-463F-ADA5-A57C04DDC36B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EE81088-4C65-463F-ADA5-A57C04DDC36B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EE81088-4C65-463F-ADA5-A57C04DDC36B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BF8C639-B084-4169-BD08-2EB6FC253146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BF8C639-B084-4169-BD08-2EB6FC253146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BF8C639-B084-4169-BD08-2EB6FC253146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BF8C639-B084-4169-BD08-2EB6FC253146}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
