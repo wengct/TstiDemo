@@ -1,6 +1,7 @@
 using DemoCoreMVC.DAL;
 using DemoCoreMVC.Files;
 using DemoCoreMVC.Interfaces;
+using DemoCoreMVC.Middlewares;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -41,6 +42,9 @@ namespace DemoCoreMVC
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.UseMiddleware<LogMiddleware>(); // 設定自定義 Middleware
+            app.UseMiddleware<LogMiddleware2>(); // 設定自定義 Middleware
 
             app.Run();
         }
